@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Fri Oct  6 11:08:50 2017
+Created on Fri Oct  6 11:33:36 2017
 
 @author: user
 """
@@ -11,7 +11,8 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-df=pd.read_csv('Classified Data', index_col=0)
+df=pd.read_csv('KNN_Project_Data', index_col=0)
+sns.pairplot(df, hue='TARGET CLASS', pallette='coolwarm')
 
 from sklearn.preprocessing import StandardScaler
 
@@ -37,7 +38,6 @@ from sklearn.metrics import confusion_matrix, classification_report
 cm=confusion_matrix(y_test, predictions)
 cr=classification_report(y_test, predictions)
 
-# using the elbow method to figure out the optimum number of neighbors (k)
 error_rate=[]
 for i in range(1, 40):
     knn=KNeighborsClassifier(n_neighbors=i)
@@ -47,7 +47,7 @@ for i in range(1, 40):
     
 plt.plot(range(1, 40), error_rate)
 
-knn=KNeighborsClassifier(n_neighbors=35)
+knn=KNeighborsClassifier(n_neighbors=10)
 knn.fit(X_train, y_train)
 predictions=knn.predict(X_test)
 
