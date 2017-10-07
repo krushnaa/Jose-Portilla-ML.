@@ -8,6 +8,17 @@ Created on Sat Oct  7 22:13:17 2017
 import tensorflow as tf
 
 hello_tf=tf.constant('hello TF')
-x=tf.constant(100)
 
 session=tf.Session()
+session.run(hello_tf)
+
+x=tf.constant(5)
+y=tf.constant(7)
+
+with tf.Session() as s:
+    print("Operation with constants:")
+    print(s.run(x+y))
+    print(s.run(x-y))
+    print(s.run(x/y))
+    print(s.run(x*y))
+    print(s.run(x**y))
